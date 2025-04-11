@@ -34,8 +34,8 @@
 
             <form action="{{ url_for('signup') }}" method="post" class="auth-form" id="signup-form" onsubmit="return validateEmail()">
                 <div class="form-group">
-                    <label for="email">VIT Bhopal Email</label>
-                    <input type="email" id="email" name="email" required placeholder="youremail@vitbhopal.ac.in">
+                    <label for="email">Enter your Email</label>
+                    <input type="email" id="email" name="email" required placeholder="youremail@gmail.com">
                     <small class="form-text">Only @vitbhopal.ac.in emails allowed</small>
                     <small id="email-error" class="form-text error"></small>
                 </div>
@@ -51,28 +51,7 @@
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>
     <script>
-        function validateEmail() {
-            const email = document.getElementById('email').value;
-            const emailError = document.getElementById('email-error');
 
-            // Reset error message
-            emailError.textContent = '';
-
-            // Check if email ends with @vitbhopal.ac.in
-            if (!email.endsWith('@vitbhopal.ac.in')) {
-                emailError.textContent = 'Please use your VIT Bhopal email (@vitbhopal.ac.in)';
-                return false;
-            }
-
-            // Additional validation: check if email follows basic pattern
-            const emailPattern = /^[a-zA-Z0-9._%+-]+@vitbhopal\.ac\.in$/;
-            if (!emailPattern.test(email)) {
-                emailError.textContent = 'Please enter a valid email address';
-                return false;
-            }
-
-            return true;
-        }
     </script>
 </body>
 </html>
