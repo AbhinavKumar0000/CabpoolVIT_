@@ -114,17 +114,17 @@ def send_email(recipient_email, subject, message_html):
         return False
 
 
-# Helper function to validate email
-def is_valid_vit_email(email):
-    # Check if email ends with @vitbhopal.ac.in
-    if not email.endswith('@vitbhopal.ac.in'):
-        return False
-
-    # Check if email follows the specific VIT pattern:
-    # string.YYcccNNNN@vitbhopal.ac.in
-    # where YY=2 numbers, ccc=3 letters, NNNN=4-5 numbers
-    pattern = r'^[a-zA-Z]+\.\d{2}[a-zA-Z]{3}\d{4,5}@vitbhopal\.ac\.in$'
-    return bool(re.match(pattern, email))
+# # Helper function to validate email
+# def is_valid_vit_email(email):
+#     # Check if email ends with @vitbhopal.ac.in
+#     if not email.endswith('@vitbhopal.ac.in'):
+#         return False
+#
+#     # Check if email follows the specific VIT pattern:
+#     # string.YYcccNNNN@vitbhopal.ac.in
+#     # where YY=2 numbers, ccc=3 letters, NNNN=4-5 numbers
+#     pattern = r'^[a-zA-Z]+\.\d{2}[a-zA-Z]{3}\d{4,5}@vitbhopal\.ac\.in$'
+#     return bool(re.match(pattern, email))
 
 # Authentication Routes
 @app.route('/')
@@ -140,9 +140,9 @@ def login():
         email = request.form.get('email')
 
         # Validate VIT Bhopal email domain
-        if not is_valid_vit_email(email):
-            flash('Please a Valid VIT Bhopal email ', 'error')
-            return render_template('login.html')
+        # if not is_valid_vit_email(email):
+        #     flash('Please a Valid VIT Bhopal email ', 'error')
+        #     return render_template('login.html')
 
         conn = sqlite3.connect('rides.db')
         c = conn.cursor()
@@ -180,9 +180,9 @@ def signup():
         email = request.form.get('email')
 
         # Validate VIT Bhopal email domain
-        if not is_valid_vit_email(email):
-            flash('Please use your VIT Bhopal email', 'error')
-            return render_template('signup.html')
+        # if not is_valid_vit_email(email):
+        #     flash('Please use your VIT Bhopal email', 'error')
+        #     return render_template('signup.html')
 
         # Check if email already exists
         conn = sqlite3.connect('rides.db')
@@ -588,7 +588,8 @@ def apply_ride(ride_id):
         print(f"Email error: {str(e)}")
 
     # Show a confirmation dialog
-    flash("Application successful! WhatsApp group link has been sent to your email.", "success")
+    flash("Application successful! WhatsApp group link has been sent to your email."
+          "If not then please check the spam mail section.", "success")
     return redirect(url_for('find_ride'))
 
 
@@ -659,13 +660,13 @@ def about():
     developers = [
         {
             'name': 'Abhinav Kumar',
-            'reg': '24BSA10110',
+            'reg': '24BSA',
             'email': 'abhinavkumarsaksena@gmail.com',
             'linkedin': 'https://www.linkedin.com/in/abhinav-kumar-9193632b3/'
         },
         {
             'name': 'Aditya Verma',
-            'reg': '24BCE10687',
+            'reg': '24BCE',
             'email': 'aditya2809verma@gmail.com',
             'linkedin': 'https://www.linkedin.com/in/aditya-verma-0a2465324/'
         }
